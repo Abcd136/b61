@@ -3,753 +3,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>软件下载界面</title>
-        <style>
+    <title>专业司机培训学校</title>
+    <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f7f7f7;
+            display: flex;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            height: 100vh;
+            color: white;
+            padding: 20px;
+            transition: width 0.3s;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .sidebar .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .sidebar .submenu a {
+            padding: 5px;
+        }
+        .main-content {
+            flex-grow: 1;
             padding: 20px;
         }
-        .software-item {
-            background: #fff;
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+        .card {
+            background-color: #fff;
             border: 1px solid #ddd;
-            margin-bottom: 20px;
+            border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
-        .software-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 20px;
+        .card:hover {
+            transform: translateY(-5px);
         }
-        .software-title {
-            font-size: 24px;
+        .card-category {
+            text-transform: uppercase;
+            color: #666;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .card-content {
+            font-size: 1em;
             color: #333;
-            margin-bottom: 10px;
         }
-        .software-description {
-            margin-bottom: 20px;
-        }
-        .software-rating {
-            color: gold;
-            margin-bottom: 10px;
-        }
-        .download-button {
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: row; /* 保持侧边栏在左侧 */
+            }
+            .sidebar {
+                width: 90px; /* 保持固定宽度 */
+                height: auto;
+            }
+            .main-content {
+                flex-grow: 1;
+                padding: 20px;
+            }
+            .card-container {
+                grid-template-columns: 1fr; /* 卡片堆叠 */
+            }
+            .download-btn {
             display: inline-block;
+            padding: 5px 10px;
             background-color: #5cb85c;
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            
         }
-        .download-button:hover {
+        .download-btn:hover {
             background-color: #4cae4c;
         }
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .software-item {
-                padding: 10px;
-            }
-            .software-title {
-                font-size: 20px;
-            }
-            .download-button {
-                padding: 8px 16px;
-            }
-        }
+    }
     </style>
-    
-    <style>
-        /* 模态窗口的样式 */
-        .modal {
-            display: none; /* 默认不显示 */
-            position: fixed; /* 固定定位 */
-            z-index: 1; /* 确保模态窗口在最上层 */
-            left: 0;
-            top: 0;
-            width: 100%; /* 宽度100% */
-            height: 100%; /* 高度100% */
-            overflow: auto; /* 允许滚动 */
-            background-color: rgba(0,0,0,0.4); /* 黑色背景，透明度0.4 */
-        }
-
-        /* 模态内容的样式 */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15%从顶部和自动居中 */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* 内容宽度为80% */
-        }
-
-        /* 关闭按钮的样式 */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-    
-
 </head>
 <body>
-    <div class="container">
-        <!-- 软件下载卡片 -->
-        <div class="software-item">
-            <h2 class="software-title">NP管理器</h2>
-            <p class="software-description"></p>
-            <a href="https://share.feijipan.com/s/xFAgRYeT" class="download-button">立即下载</a> 
-            <a href="http://normalplayer.top/" class="download-button">官网</a>
-
+    <div class="sidebar">
+                <h2></h2>
+        <a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu0')">首页</a>
+        <div id="submenu0" class="submenu">
+            <a href="https://abcd136.github.io/b/">跳转</a>
+            </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu1')">通知</a>
+        <div id="submenu1" class="submenu">
+            <a href="https://abcd136.github.io/b1/">公告</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu2')">广播</a>
+        <div id="submenu2" class="submenu">
+            <a href="https://abcd136.github.io/b41/">广播站</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu3')">安卓</a>
+        <div id="submenu3" class="submenu">
+            <a href="https://abcd136.github.io/b51/">软件</a>
+            <a href="https://abcd136.github.io/52/">梯子</a>
+            <a href="https://abcd136.github.io/b53/">影视</a>
+            <a href="https://abcd136.github.io/b54/">小说</a>
+            <a href="https://abcd136.github.io/b55/">AI</a>
+            <a href="https://abcd136.github.io/b56/">搜图</a>
+            <a href="https://abcd136.github.io/b57/">私密</a>
+            <a href="https://abcd136.github.io/b58/">网盘</a>
+            <a href="https://abcd136.github.io/b59/">手游</a>
+            <a href="https://abcd136.github.io/b60/">动漫</a>
+            <a href="https://abcd136.github.io/b61/">工具</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu4')">电脑</a>
+        <div id="submenu4" class="submenu">
+            <a href="#">软件</a>
+            <a href="#">梯子</a>
+            <a href="#">游戏网站</a>
+            <a href="#">游戏加速</a>
+            <a href="#">游戏</a>
+            <a href="#">系统</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu5')">吃瓜</a>
+        <div id="submenu5" class="submenu">
+            <a href="#">网络</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu6')">车牌</a>
+        <div id="submenu6" class="submenu">
+            <a href="#">网络</a>
+            <a href="#">车号</a>
+            <a href="#">里番</a>
+        </div>
+        <a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu7')">旧网站</a>
+        <div id="submenu7" class="submenu">
+            <a href="https://abcd136.github.io/abcd/">跳转</a>
+        </div>
     </div>
+    <div class="main-content">
+        <div class="header">
+            <h1></h1>
+        </div>
 
-
-
-        
-        <div class="software-item">
-            <h2 class="software-title">bitcomet</h2>
-            <p class="software-description">比特彗星</p>
-
-            <a href="https://share.feijipan.com/s/UkAhkrV0" class="download-button">立即下载</a> 
+        <div class="card-container">
             
-        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">NP管理器</div>
+        <div class="card-content">
+        <div class="download-section">
+            一个Android平台的文件管理APP
+        <p><a href="http://normalplayer.top/" class="download-btn">下载</a>
         
-        <div class="software-item">
-            <h2 class="software-title">proxy server</h2>
-            <p class="software-description">代理服务器</p>
-
-            <a href="https://share.feijipan.com/s/hnAhla2w" class="download-button">立即下载</a> 
-            
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">psp模拟器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/L4Ahlyrz" class="download-button">立即下载</a> 
-        </div>
-            
-        <div class="software-item">
-            <h2 class="software-title">rar</h2>
-            <p class="software-description">解压软件</p>
-
-            <a href="https://share.feijipan.com/s/8iAhlK2A" class="download-button">立即下载</a>
-            
-        </div>
-            
-            <div class="software-item">
-            <h2 class="software-title">小鸡模拟器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/ZJAhmHj6" class="download-button">立即下载</a> 
-        </div>
-            
-        <div class="software-item">
-            <h2 class="software-title">snaptube</h2>
-            <p class="software-description">YouTube平台上免费下载各类视频</p>
-
-            <a href="https://share.feijipan.com/s/zPAhmWHk" class="download-button">立即下载</a>
-            
-        </div>
-        
-            <div class="software-item">
-            <h2 class="software-title">idm</h2>
-            <p class="software-description">它支持批量下载</p>
-
-            <a href="https://share.feijipan.com/s/SoAhmdyd" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">reproductor</h2>
-            <p class="software-description">视频播放器</p>
-
-            <a href="https://share.feijipan.com/s/u8Ahmydi" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">ES文件浏览器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/2cAjCkKs" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">termux</h2>
-            <p class="software-description">安卓的linux系统</p>
-
-            <a href="https://share.feijipan.com/s/VUAjCqLL" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">4K壁纸</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/VkAjHAPJ" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">超强磁力下载</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/FWAjMSxI" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">豆瓣</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/qFAjYpSB" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">多邻国</h2>
-            <p class="software-description">学习国外语言</p>
-
-            <a href="https://share.feijipan.com/s/O8AjYt7o" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">海阔视界</h2>
-            <p class="software-description">浏览器</p>
-
-            <a href="https://share.feijipan.com/s/w6AjYJee" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">缓存清理器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/nSAjZAS4" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">家常饭</h2>
-            <p class="software-description">炒菜</p>
-
-            <a href="https://share.feijipan.com/s/ODAj11aa" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">酷安</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/WgAj2i6Y" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">AdGuard</h2>
-            <p class="software-description">后台拦截广告</p>
-
-            <a href="https://share.feijipan.com/s/rjAjze7f" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">游戏翻译助手</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/n8AjgWIQ" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">Filmora</h2>
-            <p class="software-description">视频编辑</p>
-
-            <a href="https://share.feijipan.com/s/KcAjh3Bt" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">翻页时钟</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/NuAjhm6v" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">MT管理器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/0sAjp69L" class="download-button">立即下载</a>
-            <a href="https://mt2.cn/" class="download-button">官网</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">收音机</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/uCAjpsz8" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">PDF阅读</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/llAjqjZF" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">RAR解压</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/qdAjrcZF" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">RS文件管理器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/DXAjrvgz" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">SD Maid清理</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/TNAjtnuj" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">Snaptube</h2>
-            <p class="software-description">youtude下载器</p>
-
-            <a href="https://share.feijipan.com/s/X9AjtSU8" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">增强图片分辨率</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/szAjuG8B" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">TPlayer播放器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/szAjuG8B" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">TV音乐会</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/tbAjucmJ" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">vFlat拍照</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/keAjukVr" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">WPS</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/cuAjRtyN" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">屏幕动态透视</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/liAk218m" class="download-button">立即下载</a> 
-            
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">屏幕翻译</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/NLAk2lf4" class="download-button">立即下载</a> 
-            
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">地球街景地图</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/3MAk41NB" class="download-button">立即下载</a> 
-        </div>
-            
-        <div class="software-item">
-            <h2 class="software-title">热舞健身</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/jaAk4eV6" class="download-button">立即下载</a>
-            
-        </div>
-            
-            <div class="software-item">
-            <h2 class="software-title">人体穴位图解</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/0iAk4mtb" class="download-button">立即下载</a> 
-        </div>
-            
-        <div class="software-item">
-            <h2 class="software-title">视频压缩</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/gaAk6HsM" class="download-button">立即下载</a>
-            
-        </div>
-        
-            <div class="software-item">
-            <h2 class="software-title">唐诗三百</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/XaAkvISr" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">万能图片转换器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/LHAkhoTK" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">下厨房</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/E5Akkwmr" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">小红书</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/BuAkm3EC" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">嗅觉浏览器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/3vAlDAT6" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">雪豹速清</h2>
-            <p class="software-description">充值才能使用，请卸载</p>
-
-            <a href="https://share.feijipan.com/s/zqAlDgTE" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">血压追踪器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/FWAlDS82" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">迅雷</h2>
-            <p class="software-description">无视会员，下载就行</p>
-
-            <a href="https://share.feijipan.com/s/TOAlExb5" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">应用检测</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/zlAlGPJK" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">应用隐藏宝</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/K3AlGcVX" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">元气桌面壁纸</h2>
-            <p class="software-description">登录就行，无视会员充值</p>
-
-            <a href="https://share.feijipan.com/s/TjAlHxjd" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">知乎国际版</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/KwAl0S6u" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">中医辨证开方</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/2RAl2LNq" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">字说</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/K9Al38Ri" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">最右</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/OpAl4OMH" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">软硬件信息</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/A4Al4yVk" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">CPU查看器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/jRAlaAxB" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">设备检测</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/ccAlaYdB" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">配音神器</h2>
-            <p class="software-description">登录即可，无视会员时间</p>
-
-            <a href="https://share.feijipan.com/s/9DAlaxeW" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">手机代理服务器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/IcAlan4F" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">网易云音乐</h2>
-            <p class="software-description">登录即可，无视到期时间</p>
-
-            <a href="https://share.feijipan.com/s/HrAlbZtY" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">幸运的破解器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/KUAlf77T" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">微软翻译</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/FlAlfr1s" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">淘宝精简版</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/jvAlfJgt" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">思维导图</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/PrAlg4US" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">高德地图</h2>
-            <p class="software-description">华为Pura_70_Ultra内置版.apk</p>
-
-            <a href="https://share.feijipan.com/s/I6AoI2TA" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">代码编辑器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/ZSApTM1a" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">GIF助手</h2>
-            <p class="software-description">正常运行GIF，设置0.1/s的速度</p>
-
-            <a href="https://share.feijipan.com/s/NmApU2Ki" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">布丁扫描</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/lYAqQaCU" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">工具大师</h2>
-            <p class="software-description">充值才能使用，请卸载</p>
-
-            <a href="https://share.feijipan.com/s/PKAq16Ae" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">KTV</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/kPAq4T7B" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">ONS模拟器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/xmAtfl77" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">GBA模拟器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/BSALCZMW" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">凯格尔</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853027/9HIWHPXP/%E5%87%AF%E6%A0%BC%E5%B0%94_1.013.apk?t=1716803381&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">拉伸运动</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853028/btxjJEH3/%E6%8B%89%E4%BC%B8%E8%BF%90%E5%8A%A8_2.0.10.apk?t=1716803518&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">女性健身</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853029/rJxo8cWQ/%E5%A5%B3%E6%80%A7%E5%81%A5%E8%BA%AB-%E5%A5%B3%E6%80%A7%E9%94%BB%E7%82%BC_1.5.6.apk?t=1716803569&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">男性减肥健身</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853030/L48G02KJ/%E7%94%B7%E6%80%A7%E5%87%8F%E8%82%A5%E5%81%A5%E8%BA%AB%E8%BD%AF%E4%BB%B6_2.3.2.apk?t=1716803641&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">瑜伽</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853031/3zC5uW3u/%E7%91%9C%E4%BC%BD_1.4.9.apk?t=1716803698&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">一字马训练</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853074/sABJCCZ3/%E4%B8%80%E5%AD%97%E9%A9%AC%E8%AE%AD%E7%BB%83_1.0.41.apk?t=1716803803&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">跑步记录</h2>
-            <p class="software-description"></p>
-
-            <a href="https://a.download.yunzhongzhuan.com/download/2853032/dUVGPo8f/%E8%B7%91%E6%AD%A5%E8%AE%B0%E5%BD%95_1.5.0.apk?t=1716803888&o=yunzhongzhuan.com" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">AI抠图</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/28AIjYr6" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">10个以图搜图</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/tZAIjmFS" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">WPS</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/T1AJSBjL" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">番号软件</h2>
-            <p class="software-description">充值才能使用，请卸载</p>
-
-            <a href="https://share.feijipan.com/s/KxAKAk2Y" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">吉里吉里模拟器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/6dAKB8bh" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">视频下载器</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/QzAKAeCU" class="download-button">立即下载</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">Hiddify 免费节点</h2>
-            <p class="software-description"></p>
-            <a href="https://wwm.lanzn.com/idXRJ21y2z3i" class="download-button">节点</a>
-            <a href="https://share.feijipan.com/s/IqAKypCO" class="download-button">Android</a>
-            <a href="https://share.feijipan.com/s/MVAKysi8" class="download-button">Windows</a>
-        </div>
-
-        <div class="software-item">
-            <h2 class="software-title">创建免费WARP配置方法</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/ijVmz21y33pe" class="download-button">立即下载</a>
-        </div>
-
+</div>
+            </div>
     </div>
-    
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">比特彗星</div>
+        <div class="card-content">
+        <div class="download-section">
+            一个社交媒体平台
+        <p><a href="https://share.feijipan.com/s/NFB0HXPu" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">proxy server</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/hnAhla2w" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">psp模拟器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/L4Ahlyrz" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">rar</div>
+        <div class="card-content">
+        <div class="download-section">
+            解压软件
+        <p><a href="https://share.feijipan.com/s/8iAhlK2A" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">小鸡模拟器</div>
+        <div class="card-content">
+<div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/ZJAhmHj6" class="download-btn">下载</a>
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">snaptube</div>
+        <div class="card-content">
+        <div class="download-section">
+            YouTube平台上免费下载各类视频
+        <p><a href="https://share.feijipan.com/s/zPAhmWHk" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">IDM</div>
+        <div class="card-content">
+        <div class="download-section">
+            它支持批量下载
+        <p><a href="https://share.feijipan.com/s/SoAhmdyd" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">reproductor</div>
+        <div class="card-content">
+        <div class="download-section">
+            视频播放器
+        <p><a href="https://share.feijipan.com/s/u8Ahmydi" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">ES文件浏览器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/2cAjCkKs" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">termux</div>
+        <div class="card-content">
+        <div class="download-section">
+            安卓的linux系统软件
+        <p><a href="https://share.feijipan.com/s/VUAjCqLL" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">家常饭</div>
+        <div class="card-content">
+        <div class="download-section">
+炒菜
+        <p><a href="https://share.feijipan.com/s/ODAj11aa" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">酷安</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/WgAj2i6Y" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">AdGuard,</div>
+        <div class="card-content">
+        <div class="download-section">
+            后台拦截广告
+        <p><a href="https://share.feijipan.com/s/rjAjze7f" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">Filmora</div>
+        <div class="card-content">
+        <div class="download-section">
+            视频编辑
+        <p><a href="https://share.feijipan.com/s/KcAjh3Bt" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">MT管理器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://mt2.cn/" class="download-btn">官网</a>
+        <a href="https://share.feijipan.com/s/0sAjp69L" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">收音机</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/uCAjpsz8L" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">增强图片分辨率</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/szAjuG8B" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">TPlayer播放器</div>
+        <div class="card-content">
+        <div class="download-section">
+
+        <p><a href="https://share.feijipan.com/s/szAjuG8B" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">TV音乐会</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/tbAjucmJ" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">热舞健身</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/jaAk4eV6" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">人体穴位图解</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/0iAk4mtb" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">视频压缩</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/gaAk6HsM" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">万能图片转换器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/LHAkhoTK" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">小红书</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/BuAkm3EC" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div><div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">迅雷</div>
+        <div class="card-content">
+        <div class="download-section">
+            无视会员，下载就行
+        <p><a href="https://share.feijipan.com/s/TOAlExb5" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">知乎国际版</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/KwAl0S6u" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">中医辨证开方</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/2RAl2LNq" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">布丁扫描</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/lYAqQaCU" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">KTV</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/kPAq4T7B" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">ONS模拟器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/xmAtfl77" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">GBA模拟器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/BSALCZMW" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">凯格尔</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853027/9HIWHPXP/%E5%87%AF%E6%A0%BC%E5%B0%94_1.013.apk?t=1716803381&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">拉伸运动</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853028/btxjJEH3/%E6%8B%89%E4%BC%B8%E8%BF%90%E5%8A%A8_2.0.10.apk?t=1716803518&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">女性健身</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853029/rJxo8cWQ/%E5%A5%B3%E6%80%A7%E5%81%A5%E8%BA%AB-%E5%A5%B3%E6%80%A7%E9%94%BB%E7%82%BC_1.5.6.apk?t=1716803569&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">男性减肥健身</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853030/L48G02KJ/%E7%94%B7%E6%80%A7%E5%87%8F%E8%82%A5%E5%81%A5%E8%BA%AB%E8%BD%AF%E4%BB%B6_2.3.2.apk?t=1716803641&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">瑜伽</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853031/3zC5uW3u/%E7%91%9C%E4%BC%BD_1.4.9.apk?t=1716803698&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">一字马训练</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853074/sABJCCZ3/%E4%B8%80%E5%AD%97%E9%A9%AC%E8%AE%AD%E7%BB%83_1.0.41.apk?t=1716803803&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">跑步记录</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://a.download.yunzhongzhuan.com/download/2853032/dUVGPo8f/%E8%B7%91%E6%AD%A5%E8%AE%B0%E5%BD%95_1.5.0.apk?t=1716803888&o=yunzhongzhuan.com" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">AI抠图</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/28AIjYr6" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">10个以图搜图</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/tZAIjmFS" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">吉里吉里模拟器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/6dAKB8bh" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">视频下载器</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/QzAKAeCU" class="download-btn">下载</a>
+        
+</div>
+            </div>
+        </div>
+    <script>
+        function toggleMenu(event, submenuId) {
+            event.preventDefault(); // 阻止链接的默认行为
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === 'block') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'block';
+            }
+        }
+        // ... JavaScript代码保持不变 ...
+    </script>
 </body>
 </html>
-     
